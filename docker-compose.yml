@@ -2,14 +2,16 @@ version: '3'
  
 services:
   my-frontend:
+    container_name: my-frontend
     build: ./notes-ui
-    image: dev-lav-frontend:v2
+    # image: dev-lav-frontend:v2
     ports:
       - "6001:3000"
  
   my-backend:
+    container_name: my-backend
     build: ./server 
-    image: dev-lav-backend:v2
+    #image: dev-lav-backend:v2
     environment:
       - APP_ENV=test  
     ports:
@@ -17,6 +19,7 @@ services:
  
  
   my-db:
-      image: dev-lav-db:latest
+      build: ./server/database    
+     #image: dev-lav-db:latest
       ports:
         - "3306:3306"
