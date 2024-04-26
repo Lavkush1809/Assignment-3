@@ -5,19 +5,30 @@ services:
     build: ./notes-ui
     #image: dev-lav-frontend:v2
     ports:
-      - "6001:3000"
- 
+      - "3000:3000"
+    volumes:
+      - ./notes-ui:/app    
+    environment:
+      - MY_IP=${MY_IP}
   my-backend:
     build: ./server 
     #image: dev-lav-backend:v2
     environment:
-      - APP_ENV=test  
+      - APP_ENV=test
+      - MY_IP=${MY_IP}  
+
     ports:
-      - "6002:4006"
+      - "4006:4006"
+    volumes:
+      - ./server:/app     
  
  
   my-db:
-      build: ./server/database
+      build: ./server/database    
       #image: dev-lav-db:latest
       ports:
         - "3306:3306"
+      volumes:
+      - ./server/database:/var/lib/mysql
+      environment:
+      - MY_IP=${MY_IP} 
