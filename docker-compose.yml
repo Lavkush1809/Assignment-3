@@ -5,7 +5,7 @@ services:
     build: ./notes-ui
     #image: dev-lav-frontend:v2
     ports:
-      - "6001:3000"
+      - "6005:3000"
  
   my-backend:
     build: ./server 
@@ -13,7 +13,7 @@ services:
     environment:
       - APP_ENV=test  
     ports:
-      - "6002:4006"
+      - "6006:4006"
  
  
   my-db:
